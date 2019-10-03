@@ -107,7 +107,7 @@ class CameraCalibration:
         camera2D = camera_mtr.dot(np.array(self.camera3D_list).T)
         camera2D /= camera2D[-1:,:]
         camera2D = camera2D[:-1,:].T
-        ret, rvecs, tvecs = cv2.solvePnP(self.world3D_list, camera2D, self.camera_mtr, None)
+        ret, rvecs, tvecs = cv2.solvePnP(np.array(self.world3D_list)/1000., camera2D, self.camera_mtr, None)
         dst, jacobian = cv2.Rodrigues(rvecs)
         print("Rotation:")
         print(dst)
