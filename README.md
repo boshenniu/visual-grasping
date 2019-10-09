@@ -52,7 +52,7 @@ $ python src/visual-grasping/camera_calibration/calibration.py # in another term
 
 
 ### Set up cv_bridge
-```
+```bash
 $ sudo apt-get install python-catkin-tools python3-dev python3-catkin-pkg-modules python3-numpy python3-yaml ros-kinetic-cv-bridge
 $ # Create catkin build workspace
 $ mkdir catkin_build_ws
