@@ -53,23 +53,23 @@ $ python src/visual-grasping/camera_calibration/calibration.py # in another term
 
 ### Set up cv_bridge
 ```
-sudo apt-get install python-catkin-tools python3-dev python3-catkin-pkg-modules python3-numpy python3-yaml ros-kinetic-cv-bridge
-# Create catkin build workspace
-mkdir catkin_build_ws
-cd catkin_build_ws
-catkin init
-# Instruct catkin to set cmake variables
-catkin config -DPYTHON_EXECUTABLE=/home/wth/miniconda3/envs/kinova/bin/python3.5 -DPYTHON_INCLUDE_DIR=/home/wth/miniconda3/envs/kinova/include/python3.5m/ -DPYTHON_LIBRARY=/home/wth/miniconda3/envs/kinova/lib/libpython3.5m.so
-# Instruct catkin to install built packages into install place. It is $CATKIN_WORKSPACE/install folder
-catkin config --install
-# Clone cv_bridge src
-git clone https://github.com/ros-perception/vision_opencv.git src/vision_opencv
-# Checkout version to kinetic in git repo. In our case it is 1.12.8
-cd src/vision_opencv/
-git checkout 1.12.8
-cd ../../
-# Build
-catkin_make
-# source the current workspace
-source devel/setup.bash
+$ sudo apt-get install python-catkin-tools python3-dev python3-catkin-pkg-modules python3-numpy python3-yaml ros-kinetic-cv-bridge
+$ # Create catkin build workspace
+$ mkdir catkin_build_ws
+$ cd catkin_build_ws
+$ catkin init
+$ # Instruct catkin to set cmake variables
+$ catkin config -DPYTHON_EXECUTABLE=/home/wth/miniconda3/envs/kinova/bin/python3.5 -DPYTHON_INCLUDE_DIR=/home/wth/miniconda3/envs/kinova/include/python3.5m/ -DPYTHON_LIBRARY=/home/wth/miniconda3/envs/kinova/lib/libpython3.5m.so
+$ # Instruct catkin to install built packages into install place. It is $CATKIN_WORKSPACE/install folder
+$ catkin config --install
+$ # Clone cv_bridge src
+$ git clone https://github.com/ros-perception/vision_opencv.git src/vision_opencv
+$ # Checkout version to kinetic in git repo. In our case it is 1.12.8
+$ cd src/vision_opencv/
+$ git checkout 1.12.8
+$ cd ../../
+$ # Build
+$ catkin_make
+$ # source the current workspace
+$ source devel/setup.bash
 ```
