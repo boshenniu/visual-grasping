@@ -48,7 +48,6 @@ def cartesian_action_movement(base, target_pos):
     # print("Cartesian movement completed")
 
 
-
 class CameraCalibration:
     def __init__(self, router, router_real_time):
         self.camera_mtr = None
@@ -61,8 +60,6 @@ class CameraCalibration:
         self.pos_list = None
         self.camera_info_sub = rospy.Subscriber("/camera/color/camera_info", CameraInfo, self.camera_info_callback)
         self.ar_tag_sub = rospy.Subscriber("ar_pose_marker", AlvarMarkers, self.ar_pose_callback)
-
-
         
         device_manager = DeviceManagerClient(router)
         self.actuator_config = ActuatorConfigClient(router)
@@ -166,13 +163,11 @@ class CameraCalibration:
             print("Failed to communicate")
         return arg_out
 
-
 def main():
 
     sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
     
     rospy.init_node("camera_calibration_kinova_test", anonymous=True)
-
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--cyclic_time", type=float, help="delay, in seconds, between cylic control call", default=0.001)
