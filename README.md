@@ -89,6 +89,8 @@ $ # source the current workspace
 $ source devel/setup.bash
 $ roslaunch ar_track_alvar boshen_test.launch
 $ # in another terminal
+$ source devel/setup.bash
+$ conda activate kinova
 $ python src/visual-grasping/camera_calibration/calibration.py # align camera frame and robot base frame
 $ python src/visual-grasping/camera_calibration/feature_mapping.py # find PCB component using feature mapping
 ```

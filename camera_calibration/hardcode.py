@@ -71,8 +71,7 @@ class KinovaController:
         self.previous_servoing_mode = self.base.GetServoingMode()
         # Set base in single level servoing mode
         servoing_mode_info = Base_pb2.ServoingModeInformation()
-        # print("Setting single level servoing mode")
-        # print(self.base.GetServoingMode())
+        # print("Setting single level servoi
         print("Current Mode:")
         print(servoing_mode_info)
         servoing_mode_info.servoing_mode = Base_pb2.SINGLE_LEVEL_SERVOING
@@ -89,18 +88,8 @@ class KinovaController:
         for count, pos in enumerate(pos_list):
             print("Moving to ",pos)
             cartesian_action_movement(self.base, pos)
-
-            # input("press Enter to continue")
-
             self.base_feedback = self.SendCallWithRetry(self.base_cyclic.RefreshFeedback, 3)
-
             joint_angles = [self.base_feedback.actuators[i].position for i in range(7)]
-
-            # self.world3D_count = time.time()
-            # delay_tol = 0.1
-            # if self.camera3D is None or abs(self.camera3D_count - self.world3D_count) > delay_tol:
-            #     continue
-            self.world3D_list.append(utilities.calculateARTagPosition(joint_angles))
 
 
     @staticmethod
@@ -137,25 +126,14 @@ def main():
 
             myKinovaController = KinovaController(router, router_real_time)
 
-            # myKinovaController.joint_angle_list = [
-            #         [30.534, 13.041, 166.953, 230.935, 1.967, 330.464, 100.346],
-            #         [23.646, 37.306, 169.927, 257.298, 8.416, 328.065, 92.203],
-            #         [355.536, 23.103, 171.337, 247.35, 10.246, 323.596, 63.933],
-            #         [348.496, 29.868, 172.386, 259.591, 10.864, 317.762, 58.541]]
-
             hover_shift = np.array([0, 0, 0.1])
             usb_pos = np.array([0.5, 0, 0.1])
             pcb_pos = np.array([0.3, 0, 0.1])
 
             home = [0.3, 0, 0.2]
-            # myKinovaController.move_arm([home])
-            # time.sleep(3)
-            # myKinovaController.gripper.open_gripper()
-            # input("Enter")
-            # myKinovaController.set_single_level_servoing_mode()
-            # input("Enter")
-            # myKinovaController.gripper.close_gripper()
-            # input("Enter")
+            #We are using single level servoing for arm control and low level servoing for gripper control
+            #Switching between servoing mode causes robot viberating. We should change the servoing mode of gripper to single level servoing either.
+            #TODO: Fix the servoing mode inconsistency before running this code. Current code may cause robot self-collision.
             myKinovaController.move_arm([home])
             myKinovaController.gripper.open_gripper()
             myKinovaController.move_arm([usb_pos+hover_shift, usb_pos])
