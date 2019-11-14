@@ -18,6 +18,9 @@
 
 	<node type="rviz" name="rviz" pkg="rviz" args="-d $(find ar_track_alvar)/rviz/camera_calibration_visualizer.rviz" />
 
-    <include file="$(find realsense2_camera)/launch/rs_camera.launch"/>
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+		<arg name="color_height" value="720" />
+		<arg name="color_width" value="1280" />
+	</include>
 
 </launch>
